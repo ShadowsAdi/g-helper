@@ -198,10 +198,16 @@ namespace GHelper.Mode
                     gpuResult = Program.acpi.SetFanRange(AsusFan.GPU, AppConfig.GetFanConfig(AsusFan.GPU));
 
                     // Something went wrong, resetting to default profile
-                    if (cpuResult != 1 || gpuResult != 1)
+                    if (cpuResult != 1)
+					{
+                        Program.acpi.DeviceSet(AsusACPI.PerformanceMode, Modes.GetCurrentBase(), "Reset Mode");
+                        settings.LabelFansResult("Model doesn't support custom CPU curves");
+                    }
+					
+					if (gpuResult != 1)
                     {
                         Program.acpi.DeviceSet(AsusACPI.PerformanceMode, Modes.GetCurrentBase(), "Reset Mode");
-                        settings.LabelFansResult("Model doesn't support custom fan curves");
+                        settings.LabelFansResult("Model doesn't support custom GPU curves");
                     }
                 }
                 else
