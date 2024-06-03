@@ -183,6 +183,8 @@ namespace GHelper.Mode
                     XGM.SetFan(AppConfig.GetFanConfig(AsusFan.XGM));
                     xgmFan = true;
                 }
+				
+				Program.acpi.DeviceSet(AsusACPI.PerformanceMode, AsusACPI.PerformanceTurbo, "ModeCalibration");
 
                 int cpuResult = Program.acpi.SetFanCurve(AsusFan.CPU, AppConfig.GetFanConfig(AsusFan.CPU));
                 int gpuResult = Program.acpi.SetFanCurve(AsusFan.GPU, AppConfig.GetFanConfig(AsusFan.GPU));
@@ -198,16 +200,10 @@ namespace GHelper.Mode
                     gpuResult = Program.acpi.SetFanRange(AsusFan.GPU, AppConfig.GetFanConfig(AsusFan.GPU));
 
                     // Something went wrong, resetting to default profile
-                    if (cpuResult != 1)
-					{
-                        Program.acpi.DeviceSet(AsusACPI.PerformanceMode, Modes.GetCurrentBase(), "Reset Mode");
-                        settings.LabelFansResult("cpuResult: " + cpuResult);
-                    }
-					
-					if (gpuResult != 1)
+                    if (cpuResult != 1 || gpuResult != 1)
                     {
                         Program.acpi.DeviceSet(AsusACPI.PerformanceMode, Modes.GetCurrentBase(), "Reset Mode");
-                        settings.LabelFansResult("gpuResult: " + gpuResult);
+                        settings.LabelFansResult("Model doesn't support custom fan curves");
                     }
                 }
                 else
