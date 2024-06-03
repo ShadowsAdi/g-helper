@@ -201,13 +201,13 @@ namespace GHelper.Mode
                     if (cpuResult != 1)
 					{
                         Program.acpi.DeviceSet(AsusACPI.PerformanceMode, Modes.GetCurrentBase(), "Reset Mode");
-                        settings.LabelFansResult("Model doesn't support custom CPU curves");
+                        settings.LabelFansResult("cpuResult: " + cpuResult);
                     }
 					
 					if (gpuResult != 1)
                     {
                         Program.acpi.DeviceSet(AsusACPI.PerformanceMode, Modes.GetCurrentBase(), "Reset Mode");
-                        settings.LabelFansResult("Model doesn't support custom GPU curves");
+                        settings.LabelFansResult("gpuResult: " + cpuResult);
                     }
                 }
                 else
