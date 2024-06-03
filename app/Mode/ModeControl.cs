@@ -207,7 +207,7 @@ namespace GHelper.Mode
 					if (gpuResult != 1)
                     {
                         Program.acpi.DeviceSet(AsusACPI.PerformanceMode, Modes.GetCurrentBase(), "Reset Mode");
-                        settings.LabelFansResult("gpuResult: " + cpuResult);
+                        settings.LabelFansResult("gpuResult: " + gpuResult);
                     }
                 }
                 else
